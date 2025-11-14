@@ -8,7 +8,9 @@ use Inertia\Inertia;
 class UserController extends Controller
 {
     //
-    public function show (){
-        return Inertia::render('User/Show');
+
+    public function register(){
+        return Inertia::render('Public/Register');
     }
+
 }
