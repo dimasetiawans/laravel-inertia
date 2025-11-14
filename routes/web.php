@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -9,5 +10,5 @@ use Inertia\Inertia;
 //     return view('welcome');
 // });
 
-Route::get('/', [UserController::class, 'show']);
 
+Route::get('/', [HomeController::class, 'index']);
