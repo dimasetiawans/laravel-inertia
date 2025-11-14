@@ -14,3 +14,4 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/register', [UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'store']);
