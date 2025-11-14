@@ -24,10 +24,13 @@ class UserController extends Controller
 
         $user = $service->register($validated);
 
-        return response()->json([
-            'message' => 'User registered successfully',
-            'user_id' => $user->id
-        ]);
+        return redirect()->route('login')
+        ->with('success','Registration successful! Please sign in !');
+    }
+
+
+    public function login(){
+        return Inertia::render('Public/Login');
     }
 
 }
