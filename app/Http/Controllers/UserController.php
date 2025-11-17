@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Services\UserService;
@@ -14,15 +15,9 @@ class UserController extends Controller
         return Inertia::render('Public/Register');
     }
 
-    public function store(Request $request, UserService $service){
+    public function store(UserService $service, RegisterRequest $request){
         //
-        $validated = $request->validate([
-            'name'                  => ['required', 'string', 'max:255'],
-            'email'                 => ['required', 'email', 'max:255', 'unique:users'],
-            'password'              => ['required', 'min:8', 'confirmed'],
-        ]);
-
-        $user = $service->register($validated);
+        $service->register($request->validated());
 
         return redirect()->route('login')
         ->with('success','Registration successful! Please sign in !');
