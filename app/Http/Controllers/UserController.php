@@ -41,10 +41,17 @@ class UserController extends Controller
 
        $request->session()->regenerate();
 
-    //    return $request->session()->getId();
            return redirect()->route('dashboard')->with('success','Logged in successfully');
-        
+    }
 
+
+    public function logout(Request $request, UserService $service){
+
+        $service->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Logged out successfully');
     }
 
 }
