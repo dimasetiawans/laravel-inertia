@@ -1,16 +1,21 @@
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import Header from "./Header.vue"
+import Sidebar from "./Sidebar.vue"
+import Footer from "./Footer.vue"
 </script>
 
 <template>
-  <main>
-    <header>
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-      <Link href="/contact">Contact</Link>
-    </header>
-    <article>
-      <slot />
-    </article>
-  </main>
+  <div>
+    <Header />
+
+    <div class="d-flex">
+      <Sidebar />
+
+      <main class="p-4" style="width: 100%;">
+        <slot />
+      </main>
+    </div>
+
+    <Footer />
+  </div>
 </template>
