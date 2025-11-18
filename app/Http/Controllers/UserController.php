@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -26,6 +27,21 @@ class UserController extends Controller
 
     public function login(){
         return Inertia::render('Public/Login');
+    }
+
+    public function requestLogin(UserService $service, LoginRequest $request ){
+
+        $credentials = $request->validated();
+
+        if(!$service->login($credentials)){
+            return back()->withErrors([
+                'email'=>'Invalid login credentials'
+            ]);
+        }
+
+       $request->session()->regenerate();
+
+       return $request->session()->getId();
     }
 
 }

@@ -47,6 +47,10 @@ const page = usePage();
                         placeholder="name@example.com"
                     />
                     <label for="floatingInput">Email address</label>
+
+                    <div class="text-danger small" v-if="form.errors.email">
+                        {{ form.errors.email }}
+                    </div>
                 </div>
 
                 <!-- Password -->
@@ -59,6 +63,9 @@ const page = usePage();
                         placeholder="Password"
                     />
                     <label for="floatingPassword">Password</label>
+                    <div class="text-danger small" v-if="form.errors.password">
+                        {{ form.errors.password }}
+                    </div>
                 </div>
 
                 <!-- Remember me -->
