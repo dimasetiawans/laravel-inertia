@@ -33,7 +33,7 @@ class UserController extends Controller
 
         $credentials = $request->validated();
 
-        if(!$service->login($credentials)){
+        if(!$service->login($credentials, $request)){
             return back()->withErrors([
                 'email'=>'Invalid login credentials'
             ]);
@@ -41,7 +41,10 @@ class UserController extends Controller
 
        $request->session()->regenerate();
 
-       return $request->session()->getId();
+    //    return $request->session()->getId();
+           return redirect()->route('dashboard')->with('success','Logged in successfully');
+        
+
     }
 
 }
